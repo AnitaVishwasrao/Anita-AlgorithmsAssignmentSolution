@@ -1,12 +1,12 @@
 
 public class SearchSortHelper {
 
-	private void merge(CompanyStock[] array, int left, int mid, int right) {
+	private void merge(Stock[] array, int left, int mid, int right) {
 		int length1 = mid - left + 1;
 		int length2 = right - mid;
 
-		CompanyStock[] aLeft = new CompanyStock[length1];
-		CompanyStock[] aRight = new CompanyStock[length2];
+		Stock[] aLeft = new Stock[length1];
+		Stock[] aRight = new Stock[length2];
 
 		for (int i = 0; i < length1; i++)
 			aLeft[i] = array[i + left];
@@ -38,7 +38,7 @@ public class SearchSortHelper {
 		}
 	}
 
-	public void mergeSort(CompanyStock[] array, int left, int right) {
+	public void mergeSort(Stock[] array, int left, int right) {
 		if (left < right) {
 			int mid = (left + right) / 2;
 			mergeSort(array, left, mid);
@@ -47,7 +47,7 @@ public class SearchSortHelper {
 		}
 	}
 
-	public int binarySearch(CompanyStock[] array, int left, int right, double key) {
+	public int binarySearch(Stock[] array, int left, int right, double key) {
 
 		if (right >= left) {
 			int mid = (left + right) / 2;

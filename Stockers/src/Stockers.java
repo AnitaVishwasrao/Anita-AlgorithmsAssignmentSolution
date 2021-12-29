@@ -4,7 +4,7 @@ public class Stockers {
 	static Scanner scanner = new Scanner(System.in);
 	private int noOfCompanies, companyCountForWhichSharePriceRose;
 
-	CompanyStock[] companyStocks = null;
+	Stock[] stocks = null;
 	SearchSortHelper searchSortHelper = null;
 
 	public Stockers() {
@@ -15,33 +15,33 @@ public class Stockers {
 	public void insertValues() {
 		System.out.print("Enter the no of companies: ");
 		noOfCompanies = scanner.nextInt();
-		companyStocks = new CompanyStock[noOfCompanies];
+		stocks = new Stock[noOfCompanies];
 
 		for (int i = 0; i < noOfCompanies; i++) {
-			CompanyStock cs = new CompanyStock();
+			Stock stock = new Stock();
 			System.out.print("Enter current stock price of the company " + (i + 1) + ": ");
-			cs.sharePrice = scanner.nextDouble();
+			stock.sharePrice = scanner.nextDouble();
 			System.out.print("Whether company's stock price rose today compare to yesterday? ");
-			cs.isPriceSameAsYesterday = scanner.nextBoolean();
-			if (cs.isPriceSameAsYesterday)
+			stock.isPriceSameAsYesterday = scanner.nextBoolean();
+			if (stock.isPriceSameAsYesterday)
 				this.companyCountForWhichSharePriceRose++;
-			companyStocks[i] = cs;
+			stocks[i] = stock;
 		}
 	}
 
 	// Sorts the share details in ascending order
 	public void sort() {
-		searchSortHelper.mergeSort(companyStocks, 0, noOfCompanies - 1);
+		searchSortHelper.mergeSort(stocks, 0, noOfCompanies - 1);
 	}
 
 	public void searchSharePrice() {
 		System.out.print("enter the key value: ");
 		double sharePrice = scanner.nextDouble();
-		int index = searchSortHelper.binarySearch(companyStocks, 0, noOfCompanies - 1, sharePrice);
+		int index = searchSortHelper.binarySearch(stocks, 0, noOfCompanies - 1, sharePrice);
 		if (index > -1) {
 			System.out.println("Stock of value " + sharePrice + " is present");
 		} else {
-			System.out.println("Stock of value " + sharePrice + " not found");
+			System.out.println("Value not found");
 		}
 	}
 
@@ -49,31 +49,19 @@ public class Stockers {
 	public void printShareValuesAsc() {
 
 		for (int i = 0; i < noOfCompanies; i++) {
-			System.out.print(companyStocks[i].sharePrice + " ");
-//			if (i < (noOfCompanies - 1))
-//				System.out.print(", ");
+			System.out.print(stocks[i].sharePrice + " ");
 		}
 	}
 
 	// prints array values in descending order
 	public void printShareValuesDesc() {
 		for (int i = noOfCompanies - 1; i >= 0; i--) {
-			System.out.print(companyStocks[i].sharePrice + " ");
-//			if (i > 0)
-//				System.out.print(", ");
+			System.out.print(stocks[i].sharePrice + " ");
 		}
 
 	}
 
 	public int getCompanyCountForWhichStockPriceRose() {
-//		int count = 0;
-//		for(int i=0;i<noOfCompanies;i++)
-//		{
-//			if(!companyStocks[i].isPriceSameAsYesterday)
-//				count++;
-//		}
-//		return count;
-
 		return companyCountForWhichSharePriceRose;
 	}
 
@@ -101,15 +89,11 @@ public class Stockers {
 				switch (option) {
 				case 1:
 					System.out.println("Stock prices in ascending order are: ");
-					// System.out.print("[");
 					stockers.printShareValuesAsc();
-					// System.out.println("]");
 					break;
 				case 2:
 					System.out.println("Stock prices in descending order are: ");
-					// System.out.print("[");
 					stockers.printShareValuesDesc();
-					// System.out.println("]");
 					break;
 				case 3:
 					System.out.println("Total no of companies whose stock price rose today : "

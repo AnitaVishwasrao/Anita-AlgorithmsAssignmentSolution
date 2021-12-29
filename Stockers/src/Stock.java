@@ -1,8 +1,8 @@
-public class CompanyStock {
+public class Stock {
 	public double sharePrice;
 	public boolean isPriceSameAsYesterday;
 
-	public CompanyStock() {
+	public Stock() {
 		sharePrice = 0.0;
 		isPriceSameAsYesterday = false;
 	}
